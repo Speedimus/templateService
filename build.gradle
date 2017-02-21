@@ -30,6 +30,7 @@ ext
     commonsVersion                  =   "2.5"
     commonsCodecVersion             =   "1.10"
     apacheVersion                   =   "4.5.2"
+    elapiVersion                    =   "2.2.1-b04"
 }
 
 mainClassName       = "org.ownjoo.service.Application"
@@ -79,13 +80,26 @@ dependencies
                     name:   'json-path'
     testCompile     group:  'org.hibernate',
                     name:   'hibernate-validator'
+    testCompile     group:  'javax.el',
+                    name:   'el-api',
+                    version: elapiVersion
 
     // build
     compile         group:  'org.springframework.boot',
                     name:   'spring-boot-starter-web'
     compile         group:  'org.hibernate',
                     name:   'hibernate-validator'
+    compile         group:  'javax.el',
+                    name:   'el-api',
+                    version: elapiVersion
+
+
     // package
     providedRuntime group:  'org.springframework.boot',
                     name:   'spring-boot-starter-tomcat'
+    providedRuntime group:  'org.hibernate',
+                    name:   'hibernate-validator'
+    providedRuntime group:  'javax.el',
+                    name:   'el-api',
+                    version: elapiVersion
 }

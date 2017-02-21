@@ -27,21 +27,21 @@ public class ItemControllerTests
 
         this.mockMvc
                 .perform(get("/item")).andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, World!"));
+                .andExpect(jsonPath("$.content").value("Content received: [empty]"));
     }
 
     @Test
     public void paramItemShouldReturnTailoredMessage() throws Exception
     {
 
-        this.mockMvc.perform(get("/item").param("name", "Spring Community"))
+        this.mockMvc.perform(get("/item").param("content", "Spring"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
+                .andExpect(jsonPath("$.content").value("Content received: Spring"));
     }
 
     @Test//(expected=javax.validation.ValidationException.class)
     public void paramInvalidInputShouldThrowAnException() throws Exception
     {
-        this.mockMvc.perform(get("/item").param("name", this.badContent));
+        this.mockMvc.perform(get("/item").param("content", this.badContent));
     }
 }

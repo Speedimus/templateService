@@ -18,7 +18,7 @@ public class ItemController
     @Autowired
     Validator validator;
 
-    private static final String template = "Content received: %s!";
+    private static final String template = "Content received: %s";
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/item")
