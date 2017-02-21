@@ -1,0 +1,91 @@
+buildscript
+{
+    repositories
+    {
+        jcenter()
+    }
+    dependencies
+    {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+ext
+{
+    sourceCompatibility             =   1.8
+    targetCompatibility             =   1.8
+    jacksonVersion 			    	=	"2.8.6"
+    javaxValidationVersion	    	=	"1.1.0.Final"
+    junitVersion					=	"4.12"
+    slf4jVersion					=	"1.7.21"
+    logbackVersion                  =   "1.1.9"
+    springVersion					=	"4.3.6.RELEASE"
+    assertjVersion					=	"3.6.1"
+    commonsVersion                  =   "2.5"
+    commonsCodecVersion             =   "1.10"
+    apacheVersion                   =   "4.5.2"
+}
+
+mainClassName       = "org.ownjoo.service.Application"
+
+war
+{
+    baseName = 'templateService'
+    version =  '0.1.0'
+    archiveName = "templateService.war"
+}
+
+jar
+{
+    archiveName = "templateService.jar"
+    from
+    {
+        configurations.runtime.collect
+        {
+            it.isDirectory() ? it : zipTree(it)
+        }
+
+        configurations.compile.collect
+        {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    manifest
+    {
+        attributes 'Main-Class': mainClassName
+    }
+
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
+repositories
+{
+	jcenter()
+}
+
+dependencies
+{
+    //test
+    testCompile     group:  'org.springframework.boot',
+                    name:   'spring-boot-starter-test'
+    testCompile     group:  'com.jayway.jsonpath',
+                    name:   'json-path'
+    testCompile     group:  'org.hibernate',
+                    name:   'hibernate-validator'
+
+    // build
+    compile         group:  'org.springframework.boot',
+                    name:   'spring-boot-starter-web'
+    compile         group:  'org.hibernate',
+                    name:   'hibernate-validator'
+    // package
+    providedRuntime group:  'org.springframework.boot',
+                    name:   'spring-boot-starter-tomcat'
+}
