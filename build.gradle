@@ -80,18 +80,12 @@ dependencies
                     name:   'json-path'
     testCompile     group:  'org.hibernate',
                     name:   'hibernate-validator'
-    testCompile     group:  'javax.el',
-                    name:   'el-api',
-                    version: elapiVersion
 
     // build
     compile         group:  'org.springframework.boot',
                     name:   'spring-boot-starter-web'
     compile         group:  'org.hibernate',
                     name:   'hibernate-validator'
-    compile         group:  'javax.el',
-                    name:   'el-api',
-                    version: elapiVersion
 
 
     // package
@@ -99,7 +93,4 @@ dependencies
                     name:   'spring-boot-starter-tomcat'
     providedRuntime group:  'org.hibernate',
                     name:   'hibernate-validator'
-    providedRuntime group:  'javax.el',
-                    name:   'el-api',
-                    version: elapiVersion
 }

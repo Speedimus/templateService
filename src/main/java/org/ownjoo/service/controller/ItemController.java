@@ -2,7 +2,6 @@ package org.ownjoo.service.controller;
 
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
-
 import org.ownjoo.service.model.Item;
 import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +21,13 @@ public class ItemController
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/item")
-    public Item getItem(@RequestParam(value="content", defaultValue="[empty]") String content)
+    public Item getItem(@RequestParam(value="content", defaultValue="empty") String content)
     {
         Item itemReturn = new Item(counter.incrementAndGet(), String.format(template, content));
         Set<ConstraintViolation<Item>> violations = validator.validate(itemReturn);
         if(violations.size() > 0)
         {
-            System.out.println(violations.toString() + "\r\nFailed string: " + content);
-            itemReturn = new Item(0, "Validation error...");
+            itemReturn = new Item(0, "Constraint Violations...");
         }
         return itemReturn;
     }

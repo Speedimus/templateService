@@ -10,8 +10,8 @@ public class Item
     private final long id;
 
     @NotNull
-    @Size(min=0, max=32)
-    @Pattern(regexp = "^[a-zA-Z0-9]*"/*, message="Contains invalid characters..."*/)
+    @Size(min=0, max=64)
+    @Pattern(regexp = "^[a-zA-Z0-9 :]*"/*, message="Contains invalid characters..."*/)
     private final String content;
 
     public Item(long id, String content)
