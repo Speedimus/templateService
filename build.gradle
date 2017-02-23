@@ -16,22 +16,8 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 
-ext
-{
-    sourceCompatibility             =   1.8
-    targetCompatibility             =   1.8
-    jacksonVersion 			    	=	"2.8.6"
-    javaxValidationVersion	    	=	"1.1.0.Final"
-    junitVersion					=	"4.12"
-    slf4jVersion					=	"1.7.21"
-    logbackVersion                  =   "1.1.9"
-    springVersion					=	"4.3.6.RELEASE"
-    assertjVersion					=	"3.6.1"
-    commonsVersion                  =   "2.5"
-    commonsCodecVersion             =   "1.10"
-    apacheVersion                   =   "4.5.2"
-    elapiVersion                    =   "2.2.1-b04"
-}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 mainClassName       = "org.ownjoo.service.Application"
 
@@ -86,7 +72,6 @@ dependencies
                     name:   'spring-boot-starter-web'
     compile         group:  'org.hibernate',
                     name:   'hibernate-validator'
-
 
     // package
     providedRuntime group:  'org.springframework.boot',
