@@ -19,9 +19,7 @@ public class ItemTests
 {
     @Valid      private Item        item;
                 private long        goodId      =   0;
-                private long        badId       =   17;
                 private String      goodContent =   "content";
-                private String      badContent  =   "'><script>alert(0);</script><!--";
 
     @Before
     public void itemConstructor() throws Exception
@@ -39,13 +37,5 @@ public class ItemTests
     public void itemGetContent()
     {
         assertEquals(item.getContent(), this.goodContent);
-    }
-
-    @Test//(expected=javax.validation.ValidationException.class)
-    public void itemValidation()
-    {
-        item = new Item(this.badId, this.badContent);
-//        Set<ConstraintViolation<Item>> violations = validator.validate(item);
-//        assertTrue(violations.size() > 0);
     }
 }
