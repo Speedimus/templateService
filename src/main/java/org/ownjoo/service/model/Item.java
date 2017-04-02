@@ -1,5 +1,4 @@
 package org.ownjoo.service.model;
-
 import javax.validation.constraints.*;
 
 public class Item

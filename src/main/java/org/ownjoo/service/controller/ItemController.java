@@ -1,34 +1,21 @@
 package org.ownjoo.service.controller;
 
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+
 import org.ownjoo.service.model.Item;
-import javax.validation.Validator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.ConstraintViolation;
-
 @RestController
 public class ItemController
 {
-    @Autowired
-    Validator validator;
-
-    private static final String template = "Content received: %s";
+    private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/item")
-    public Item getItem(@RequestParam(value="content", defaultValue="empty") String content)
+    public Item greeting(@RequestParam(value="name", defaultValue="World") String name)
     {
-        Item itemReturn = new Item(counter.incrementAndGet(), String.format(template, content));
-        Set<ConstraintViolation<Item>> violations = validator.validate(itemReturn);
-        if(violations.size() > 0)
-        {
-            itemReturn = new Item(0, "Constraint Violations...");
-        }
-        return itemReturn;
+        return new Item(counter.incrementAndGet(), String.format(template, name));
     }
 }
